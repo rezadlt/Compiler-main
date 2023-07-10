@@ -1,0 +1,44 @@
+Program -> Declaration-list $
+Declaration-list -> Declaration Declaration-list | EPSILON 
+Declaration -> Declaration-initial Declaration-prime
+Declaration-initial ->  #push_token Type-specifier #push_token ID
+Declaration-prime -> Fun-declaration-prime | Var-declaration-prime
+Var-declaration-prime -> #declare_id ; | [ #push_num NUM ] #declare_arr ; 
+Fun-declaration-prime -> #declare_func #new_scope ( Params ) #set_args Compound-stmt #end_scope #return_func #fill_jump
+Type-specifier -> int | void
+Params -> #push_token int #push_token #declare_arg ID Param-prime Param-list | void
+Param-list -> , Param Param-list | EPSILON
+Param -> Declaration-initial #declare_arg Param-prime
+Param-prime -> #set_arr [  ] | #pop EPSILON
+Compound-stmt -> { Declaration-list Statement-list }
+Statement-list -> Statement Statement-list | EPSILON
+Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt
+Expression-stmt -> Expression ; #pop | break ; #break_until | ;
+Selection-stmt -> if ( Expression ) #save Statement else Statement
+Iteration-stmt -> repeat #label Statement until ( Expression ) #until #handle_breaks
+Return-stmt -> return Return-stmt-prime #return_func
+Return-stmt-prime -> ; | Expression #push_rv ;
+Expression -> Simple-expression-zegond | #push_token ID B
+B -> = #push_id Expression #assign | [ Expression ] #push_arr H | Simple-expression-prime
+H -> = Expression #assign | G D C
+Simple-expression-zegond -> Additive-expression-zegond C
+Simple-expression-prime -> Additive-expression-prime C
+C -> Relop Additive-expression #execute | EPSILON
+Relop -> #push_token < | #push_token ==
+Additive-expression -> Term D
+Additive-expression-prime -> Term-prime D
+Additive-expression-zegond -> Term-zegond D
+D -> Addop Term #execute D | EPSILON
+Addop -> #push_token + | #push_token -
+Term -> Factor G
+Term-prime -> Factor-prime G
+Term-zegond -> Factor-zegond G
+G -> #push_token * Factor #execute G | EPSILON
+Factor -> ( Expression ) | #push_token ID Var-call-prime | #push_num NUM
+Var-call-prime -> ( Args ) #call | Var-prime
+Var-prime -> [ Expression ] #push_arr | #push_id EPSILON
+Factor-prime -> ( Args ) #call | #push_id EPSILON
+Factor-zegond -> ( Expression ) | #push_num NUM
+Args -> Arg-list | EPSILON
+Arg-list -> Expression #push_param Arg-list-prime
+Arg-list-prime -> , Expression #push_param Arg-list-prime | EPSILON
