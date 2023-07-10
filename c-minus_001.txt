@@ -3,7 +3,7 @@ Declaration-list -> Declaration Declaration-list | EPSILON
 Declaration -> Declaration-initial Declaration-prime
 Declaration-initial ->  #push_token Type-specifier #push_token ID
 Declaration-prime -> Fun-declaration-prime | Var-declaration-prime
-Var-declaration-prime -> #declare_id ; | [ #push_num NUM ] #declare_arr ; 
+Var-declaration-prime -> #declare_id ; | [ #push_num NUM ] #declare_arr ;
 Fun-declaration-prime -> #declare_func #new_scope ( Params ) #set_args Compound-stmt #end_scope #return_func #fill_jump
 Type-specifier -> int | void
 Params -> #push_token int #push_token #declare_arg ID Param-prime Param-list | void
@@ -14,7 +14,7 @@ Compound-stmt -> { Declaration-list Statement-list }
 Statement-list -> Statement Statement-list | EPSILON
 Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt
 Expression-stmt -> Expression ; #pop | break ; #break_until | ;
-Selection-stmt -> if ( Expression ) #save Statement else #jpf_save Statement #fill_jump
+Selection-stmt -> if ( Expression ) #save Statement else #jpf_save Statement #jp
 Iteration-stmt -> repeat #label Statement until ( Expression ) #until #handle_breaks
 Return-stmt -> return Return-stmt-prime #return_func
 Return-stmt-prime -> ; | Expression #push_rv ;

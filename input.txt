@@ -1,46 +1,56 @@
-/*==== sample S2  ====*/
+/*==== Sample S7 ====*/
 
-int variable1b;
-int array1abc[3];
-int sum1array(int array[]) {
-    return (array[0] + array[1]);
-    array[1] = variable1b = 5;
-}
+int global;
 
-int calculate(int x, int y) {
-    int result;
-    int array1xyz[2];
-    void variable1g;
-    array1xyz[0] = x;
-    array1xyz[1] = x + 1;
-    result = sum1array(3);
-    output(result);
-    variable1b = y + result;
-    repeat {
-        result = result + x;
-        x = x - 1;
-        if (x == 4)
-            break;
-        else {}
-    } until (0 < x)
-    return result + variable1b + array1xyz;
+
+int foo(int x){
+	int array[20];
+	int counter;
+	counter = 19;
+
+	repeat {
+		array[counter] = g * 2 - 1;
+		counter = counter - 1;
+		output(x);
+	} until (0 < counter)
+	return counter * array;
 }
 
 
+int func(int a[]){
+    int b;
+    void c;
+    output(global);
+	return b + a;
+}
 
-void main(void) {
-    int variable1a;
-    variable1a = (0 - 3) + 11;
-    variable1b = 5 * variable1a + calculate(variable1a, variable1a);
-    array1abc[1] = variable1b + (0 - 3);
-    if (variable1b == 108) {
+
+void main (void) {
+    int a;
+    int t[10];
+    int u[10];
+    a = 2;
+    global = 1;
+	repeat {
+		global = a + 1 + 2 * 2;
+		a = a * 2 * k;
+	} until (global<20)
+    
+    break;
+    
+	if (global==20){
         break;
-        array1abc[0] = 0 - 7;
-        array1abc[2] = calculate(array1abc[0]) - 75;
-    }
-    else {
-        array1abc[2] = 3;
-    }
-    output(array1abc[2]);
-    variable1u = 5;
+	}else{
+    	t[0] =1;
+    	if (t[0] < 5) {
+    		u[1] = func(a);
+    	}
+    	else {
+    		u[2] = func(t);
+    	}
+	}
+	foo(a);
+	foo(t);
+	foo(a, t);
+	return;
 }
