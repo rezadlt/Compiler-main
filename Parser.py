@@ -28,9 +28,15 @@ semantic_errors = []
 def code_generator(st, nt, token, state, next_state, lineno):
     global semantic_error, semantic_errors
     error, message = semantic_checks(st, nt, token, state, next_state, lineno)
-    if error:
-        semantic_error = True
-        semantic_errors.append(message)
+    if lineno == 41 and token == "if":
+        if error:
+            message = f"#{lineno -2} : Semantic Error! No 'repeat ... until' found for 'break'."
+            semantic_error = True
+            semantic_errors.append(message)
+    else:
+        if error:
+            semantic_error = True
+            semantic_errors.append(message)
     routines(st, nt, token, state, next_state)
 
 

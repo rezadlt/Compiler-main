@@ -79,7 +79,7 @@ def check_break(lineno):
     repeat_no = code_gen.repeat_no
     if repeat_no > 0:
         return False, ''
-    return True, f"#{lineno - 1} : Semantic Error! No 'repeat ... until' found for 'break'."
+    return True, f"#{lineno -1} : Semantic Error! No 'repeat ... until' found for 'break'."
 
 
 # Returns True when there is semantic error.
