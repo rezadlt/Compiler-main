@@ -4,7 +4,7 @@ def find_first():
     a = {}
     terminals[-1] = 'epsilon'
     nterminals = []
-    ff = open('c-minus_001.txt', 'r')
+    ff = open('rules.txt', 'r')
     for line in ff:
         nterminals.append(line.split()[0])
     print(terminals)
@@ -25,7 +25,7 @@ def find_follow():
     a = {}
     terminals[-1] = ''
     nterminals = []
-    ff = open('c-minus_001.txt', 'r')
+    ff = open('rules.txt', 'r')
     for line in ff:
         nterminals.append(line.split()[0])
     print(nterminals)

@@ -117,7 +117,7 @@ def get_dfa(file):
     return dfa
 
 
-def get_action_table(file_path='c-minus_001.txt'):
+def get_action_table(file_path='rules.txt'):
     file = open(file_path, 'r')
     dfa = get_dfa(file)
     action_table = {}
@@ -150,7 +150,7 @@ def get_action_table(file_path='c-minus_001.txt'):
     return action_table
 
 
-def get_action_symbols(file_path='c-minus_001.txt'):
+def get_action_symbols(file_path='rules.txt'):
     file = open('grammar.txt', 'r')
     dfa = get_dfa(file)
     file.close()
@@ -177,11 +177,6 @@ def get_action_symbols(file_path='c-minus_001.txt'):
             state = 0
     file.close()
     return action_symbols
-
-
-
-
-
 
 
 if __name__ == '__main__':
